@@ -52,4 +52,5 @@ compatibility_date = "2023-08-14"
 [[d1_databases]]
 binding = "DB" # i.e. available in your Worker on env.DB
 database_name = "sports"
-database_id = "12094bc1-630d-450f-82ae-f19c4a83761f"
+database_id = "12094bc1-630d-450f-82ae-f19c4a83761f" 
+migrations_dir = "drizzle"

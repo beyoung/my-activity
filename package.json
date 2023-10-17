@@ -4,13 +4,20 @@
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",
-    "start": "wrangler dev"
+    "start": "wrangler dev",
+    "gen": "drizzle-kit generate:sqlite --schema=src/db/schema/*",
+    "migrate:local": "wrangler d1 migrations apply sports --local",
+    "migrate:prod": "wrangler d1 migrations apply sports"
   },
   "devDependencies": {
     "@cloudflare/d1": "^1.4.1",
     "@cloudflare/workers-types": "^4.20230419.0",
+    "drizzle-kit": "^0.19.13",
     "itty-router": "^3.0.12",
     "typescript": "^5.0.4",
-    "wrangler": "^3.5.1"
+    "wrangler": "^3.13.1"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.28.6"
   }
 }

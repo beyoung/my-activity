@@ -8,9 +8,11 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+
 import handleProxy from './proxy';
 import handleRedirect from './redirect';
 import apiRouter from './router';
+
 
 // Export a default object containing event handlers
 export default {
@@ -31,8 +33,7 @@ export default {
 
 		if (url.pathname.startsWith('/api/')) {
 			// You can also use more robust routing
-			request.db = env.DB;
-			return apiRouter.handle(request);
+			return apiRouter.handle(request, env);
 		}
 
 		return new Response(

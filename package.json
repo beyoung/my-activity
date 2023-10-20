@@ -6,6 +6,7 @@
     "deploy": "wrangler deploy",
     "start": "wrangler dev",
     "gen": "drizzle-kit generate:sqlite --schema=src/db/schema/*",
+    "data": "wrangler2 d1 execute sports --file=migrations/00001_records_table.sql --local",
     "migrate:local": "wrangler d1 migrations apply sports --local",
     "migrate:prod": "wrangler d1 migrations apply sports"
   },
@@ -15,7 +16,7 @@
     "drizzle-kit": "^0.19.13",
     "itty-router": "^3.0.12",
     "typescript": "^5.0.4",
-    "wrangler": "^3.13.1"
+    "wrangler": "^3.14.0"
   },
   "dependencies": {
     "drizzle-orm": "^0.28.6"

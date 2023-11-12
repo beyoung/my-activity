@@ -41,7 +41,7 @@ export default {
       <ul>
       <li><code><a href="/redirect?redirectUrl=https://example.com/">/redirect?redirectUrl=https://example.com/</a></code>,</li>
       <li><code><a href="/proxy?modify&proxyUrl=https://example.com/">/proxy?modify&proxyUrl=https://example.com/</a></code>, or</li>
-      <li><code><a href="/api/todos">/api/todos</a></code></li>`,
+      <li><code><a href="/api/record">/api/record</a></code></li>`,
 			{ headers: { 'Content-Type': 'text/html' } }
 		);
 	},

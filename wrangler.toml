@@ -1,4 +1,4 @@
-name = "sports-ts"
+name = "records"
 main = "src/worker.ts"
 compatibility_date = "2023-08-14"
 
@@ -51,6 +51,6 @@ compatibility_date = "2023-08-14"
 # new_classes = ["MyDurableObject"]
 [[d1_databases]]
 binding = "DB" # i.e. available in your Worker on env.DB
-database_name = "sports"
-database_id = "12094bc1-630d-450f-82ae-f19c4a83761f" 
+database_name = "records"
+database_id = "9fbf1104-dbf9-4143-a7a9-80f88a05ee41" 
 migrations_dir = "drizzle"

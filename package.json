@@ -6,15 +6,16 @@
     "deploy": "wrangler deploy",
     "start": "wrangler dev",
     "gen": "drizzle-kit generate:sqlite --schema=src/db/schema/*",
-    "data": "wrangler2 d1 execute sports --file=migrations/00001_records_table.sql --local",
+    "data": "wrangler2 d1 execute records --file=migrations/00001_records_table.sql --local",
     "migrate:local": "wrangler d1 migrations apply sports --local",
-    "migrate:prod": "wrangler d1 migrations apply sports"
+    "migrate:prod": "wrangler d1 migrations apply records",
+    "data-prod": "wrangler2 d1 execute records --file=migrations/00001_records_table.sql"
   },
   "devDependencies": {
     "@cloudflare/d1": "^1.4.1",
     "@cloudflare/workers-types": "^4.20230419.0",
     "drizzle-kit": "^0.19.13",
-    "itty-router": "^3.0.12",
+    "itty-router": "^4.0.23",
     "typescript": "^5.0.4",
     "wrangler": "^3.14.0"
   },

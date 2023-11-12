@@ -1,10 +1,11 @@
 import type { DrizzleD1Database } from 'drizzle-orm/d1';
 import { drizzle } from 'drizzle-orm/d1';
 import type { IRequest as IttyRequest, Route } from 'itty-router';
-import { Router } from 'itty-router';
-import { users } from './db/schema/users';
+import { Router, error } from 'itty-router';
 import { records } from './db/schema/records';
-import { eq, lt, gte, ne, sql } from 'drizzle-orm';
+import { eq, gte } from 'drizzle-orm';
+
+const TOKEN = 'f9925d1162aeb2027de701b6505077229eae41f5';
 
 interface Request extends IttyRequest {
 	db: DrizzleD1Database;
@@ -23,25 +24,25 @@ interface Methods {
 const router = Router<Request, Methods>({ base: '/' });
 
 // GET collection index
-router.get('/api/todos', injectDB, async (request: Request, env: Env) => {
-	const results = await request.db.select().from(records).where(gte(records.created, '2023-09-01 00:00:00'));
+router.get('/api/records', injectDB, async (request: Request, env: Env) => {
+	const results = await request.db.select().from(records).where(gte(records.created, '2023-07-01 00:00:00'));
 	return Response.json(results);
 });
 
 // GEt records collection filter by date
-router.get('/api/todos/:date', injectDB, async (request: Request, env: Env) => {
+router.get('/api/records/:date', injectDB, async (request: Request, env: Env) => {
 	const results = await request.db.select().from(records).where(gte(records.created, request.params.date));
 	return Response.json(results);
 });
 
 // POST to the collection (we'll use async here)
-router.post('/api/todos/:date', injectDB, async (request: Request, env: Env) => {
+router.post('/api/records/:date', injectDB, async (request: Request, env: Env) => {
+	const token = request.query.token;
+	if (token !== TOKEN) {
+		return error(403, 'no permission');
+	}
 	const content = await request.json();
-	let item = [];
-	console.log(request.params.date);
 	const results = await request.db.select().from(records).where(eq(records.created, request.params.date));
-	console.log('results => ', results);
-	console.log(request.params.date, 'shit...');
 	let result = null;
 	if (results.length == 1) {
 		const record = results[0];
